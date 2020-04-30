@@ -26,7 +26,7 @@ function Dashboard() {
     const result = await getUserListService();
     if (result.error) {
       dispatch(verifyTokenEnd());
-      if ([401, 403].includes(result.response.status))
+      if (result.response && [401, 403].includes(result.response.status))
         dispatch(userLogout());
       return;
     }
